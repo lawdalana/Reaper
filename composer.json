@@ -1,7 +1,8 @@
 {
     "autoload": {
-        "Test":{
-        	"Model\\": "Model/"
+        "psr-4":{
+        	"Model\\": "Model/",
+        	"Core\\": "Core/"
         }
     }
 }
