@@ -1,0 +1,7 @@
+{
+    "autoload": {
+        "Test":{
+        	"Model\\": "Model/"
+        }
+    }
+}
