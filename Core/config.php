@@ -3,9 +3,9 @@
 /*Define Database */
 define('DB_Host','localhost');
 define('DB_User','root');
-define('DB_Pass','');
+define('DB_Pass','1234');
 define('DB_Name','test');
-define('DB_Info','profile');
+define('DB_Info','result');
 
 /*Show error to View*/
 // $show_error = true;
