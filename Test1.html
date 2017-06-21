@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Todo list test</title>
+	<h1>Todo<br></h1>
+</head>
+<body>
+<div>
+<input type="string" id="task" placeholder="Add task here" value="test">
+<button type="button" onclick="AddList()">ADD</button>
+</div>
+<div id="show"></div>
+<script type="text/javascript">
+	// Array for all task
+	var taskList = [];
+	var count = 0;
+	function isNumber(n) { return /^-?[\d.]+(?:e-?\d+)?$/.test(n); }
+
+	function AddList(){
+		// Add object task to taskList
+		++count;
+		let buf = {
+			id: count,
+			task: document.getElementById("task").value,
+			status: "undone"
+		};
+		taskList.push(buf);
+		// Call for show task
+		list(taskList);
+	}
+
+	function Changestatus(Tasknumber, array){
+		for(let i=0;i<array.length;++i){
+				if(array[i].id == Tasknumber){
+					if(array[i].status == "done"){
+						array[i].status = "undone";
+					}
+					else{
+						array[i].status = "done";
+					}
+				}
+		}
+		list(array);
+	}
+
+	function list(array){
+		// Delete Child in show
+		var buf = document.getElementById('show');
+		buf.innerHTML = "";
+		// Add child to show
+		var list = document.createElement('ul');
+		var item;
+
+		for(var i=0; i<array.length ;++i){
+		  var item = document.createElement('li');
+
+			///////////// set text
+			var p = document.createElement("P");
+			p.id = array[i].id;
+			if(array[i].status == "done"){
+				p.style.color = "gray";
+			}
+			else{
+				p.style.color = "red";
+			}
+			var text = document.createTextNode(array[i].task);
+			text.id = array[i].id;
+			p.appendChild(text);
+
+			////////// Set button
+			var but = document.createElement("button");
+			if(array[i].status == "done"){
+				text = document.createTextNode("UNDONE");
+			}
+			else{
+				text = document.createTextNode("DONE");
+			}
+			but.appendChild(text)
+			but.id = array[i].id;
+			but.addEventListener("click", function(){Changestatus(this.id,array)}, false);
+
+			//////////// Set button
+			var butdel = document.createElement("BUTTON");
+			text = document.createTextNode("Delete");
+			butdel.appendChild(text);
+			butdel.id = array[i].id;
+			butdel.addEventListener("click", function(){Deltask(this.id, array)}, false);
+
+
+			// if(array[i].status == "done"){
+			// 	item.appendChild(document.createTextNode(array[i].task));
+			// }
+			// else{
+			// 	item.appendChild(document.createTextNode(array[i].task));
+			// }
+			p.appendChild(but);
+			p.appendChild(butdel);
+			item.appendChild(p);
+			list.appendChild(item);
+		}
+		document.getElementById('show').appendChild(list);
+	}
+
+	function Deltask(Tasknumber, array){
+		if(array === taskList){
+			for(i=0;i<array.length;++i){
+				if(array[i].id == Tasknumber){
+					array.splice(i,1);
+				}
+			}
+			list(array);
+		}
+		else{
+			for(i=0;i<array.length;++i){
+				if(array[i].id == Tasknumber){
+					array.splice(i,1);
+				}
+			}
+			for(i=0;i<taskList.length;++i){
+				if(taskList[i].id == Tasknumber){
+					taskList.splice(i,1);
+				}
+			}
+			list(array);
+		}
+
+	}
+</script>
+</body>
+<div id="filter">Filter
+<button type="button" onclick="list(taskList)">All</button>
+<button type="button" onclick="showDone()">DONE</button>
+<button type="button" onclick="showUndone()">UNDONE</button>
+<script>
+function showDone(){
+	var listdone = [];
+	for(i=0;i<taskList.length;++i){
+		if(taskList[i].status == "done"){
+			listdone.push(taskList[i]);
+		}
+	}
+	list(listdone);
+}
+
+function showUndone(){
+	var listundone = [];
+	for(i=0;i<taskList.length;++i){
+		if(taskList[i].status == "undone"){
+			listundone.push(taskList[i]);
+		}
+	}
+	list(listundone);
+}
+</script>
+</div>
+</html>

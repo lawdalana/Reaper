@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Testdel</title>
+  </head>
+  <p id="time1"></p>
+  <p id="time2"></p>
+
+  <script>
+  var starttime = new Date().getTime();
+  var i = 0;
+  while(i<1000000){
+    i++;
+  }
+  var endtime = new Date().getTime();
+  document.getElementById("time1").innerHTML = endtime-starttime
+////////////////////////////////////////////////////////////////////////
+  i = 0;
+  var starttime = new Date().getTime();
+  while(i<1000000){
+    ++i;
+  }
+  var endtime = new Date().getTime();
+  document.getElementById("time2").innerHTML = endtime-starttime
+
+
+  </script>
+</html>

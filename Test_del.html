@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Testdel</title>
+  </head>
+  <p id="time1"></p>
+  <p id="time2"></p>
+
+  <script>
+  var div1 = document.createElement('div');
+  div1.id = "1234"
+  for(let i=0;i<200;i++){
+    let p = document.createElement('p');
+    div1.appendChild(p);
+  }
+  var starttime = new Date().getTime();
+  while (div1.firstChild) {
+    div1.removeChild(div1.firstChild);
+  }
+  var endtime = new Date().getTime();
+  document.getElementById("time1").innerHTML = endtime-starttime
+////////////////////////////////////////////////////////////////////////
+  for(let i=0;i<200;i++){
+    let p = document.createElement('p');
+    div1.appendChild(p);
+  }
+  var starttime = new Date().getTime();
+  div1.innerHTML = ""
+  var endtime = new Date().getTime();
+  document.getElementById("time2").innerHTML = endtime-starttime
+
+
+  </script>
+</html>
