@@ -1,0 +1,39 @@
+<style media="screen">
+  table{
+    border-bottom: : 2px solid #000000;
+    background-color: #f2f2f2;
+    color: black;
+    font-size: 18px;
+  }
+  th{
+    text-align: center;
+  }
+  td{
+    text-align: right;
+  }
+  .showstat{
+    width: 100px;
+  }
+  .itemtitle{
+    text-align: left;
+    word-wrap:break-word;
+  }
+  .itemUser{
+    width: 150px;
+    text-align: center;
+  }
+  .button-state{
+    table-layout: fixed;
+    text-align: center;
+    width: 140px;
+  }
+  .statusNovel-good{
+    background-color: #40ff00;
+  }
+  .statusNovel-wait{
+    background-color: #ffbf00;
+  }
+  .statusNovel-bad{
+    background-color: #ff9999;
+  }
+</style>

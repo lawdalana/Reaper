@@ -21,28 +21,31 @@ class database{
 		}catch (PDOException $e){
 			echo $e->getMessage();
 		}
-		
 	}
 
-	public function query($sql, $data_array){
-		if(is_array($data_array)){
-			$statement = $this->connection->prepare(sql);
-			return $statement->exec($data_array);
-		}
-		
+	public function searchTitle($title){
+		$title = $this->real($title);
+		$sql = "select title, fav, chapter, visitor_all, visitor, id, username
+		from result
+		where title like '%".$title."%'
+		AND DATEDIFF(NOW(),updated)<=30
+		AND published=\"N\"
+		AND chapter>=28
+		order by result_value desc, fav desc";
+		$statement = $this->connection->prepare($sql);
+		return $statement->exec($data_array);
 	}
 
-	public function query_by_id($id){
-		$id = $this->real($id);
-		$statement = "SELECT * FROM ". DB_Info ." WHERE ID = " .$id;
-		$result = $this->connection->query($statement);
-		return $result->fetch_assoc();
-	}
+	// public function query_by_id($id){
+	// 	$id = $this->real($id);
+	// 	$statement = "SELECT * FROM ". DB_Info ." WHERE ID = " .$id;
+	// 	$result = $this->connection->query($statement);
+	// 	return $result->fetch_assoc();
+	// }
 
 	public function real($str){
 		$est_string = $this->connection->real_escape_string($str);
 		return $est_string;
-	
 	}
 }
 ?>

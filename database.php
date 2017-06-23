@@ -5,7 +5,7 @@ $password = 1234;
 $tablename = "test";
 $connection = mysqli_connect($host, $username, $password, $tablename);
 // $sql = "select id, username, title, fav from result where title like '%".$_POST['search']."%'";
-$sql = "select title, fav, chapter, visitor_all, visitor, id, username
+$sql = "select title, fav, chapter, visitor_all, visitor, id, username, choose
 from result
 where title like '%".$_POST['search']."%'
 AND DATEDIFF(NOW(),updated)<=30
@@ -17,6 +17,7 @@ $output = "<h4 alias='center'> Search Result</h4>";
 if(mysqli_num_rows($result)>0){
   $output .= "<table class='table'
         <tr>
+          <th>ID</th>
           <th>Username</th>
           <th>Title</th>
           <th>Fav</th>
@@ -32,7 +33,20 @@ if(mysqli_num_rows($result)>0){
     $linkNovel = $linkMyid."/story/view.php?id=".$tmp["id"];
 
     // Data String show novel detail in html format
-    $output.="<tr class='statusNovel'><td class='itemUser'><a target='_blank' href='".$linkMyid."'>". $tmp["username"] ."</a></td>".
+    if($tmp["choose"]==0){
+      $output.="<tr class='statusNovel'>";
+    }
+    else if ($tmp["choose"]==1) {
+      $output.="<tr class='statusNovel-bad'>";
+    }
+    else if ($tmp["choose"]==2) {
+      $output.="<tr class='statusNovel-wait'>";
+    }
+    else if ($tmp["choose"]==3) {
+      $output.="<tr class='statusNovel-good'>";
+    }
+    $output.="<td class='showid'>". $tmp["id"]. "</td>".
+    "<td class='itemuser'><a target='_blank' href='".$linkMyid."'>". $tmp["username"] ."</a></td>".
     "<td class='itemtitle'><a target='_blank' href='".$linkNovel."'>". $tmp["title"] ."</a></td>".
     "<td class='showstat'>". $tmp["fav"]. "</td>".
     "<td class='showstat'>". $tmp["chapter"]. "</td>".

@@ -11,6 +11,7 @@
         border-bottom: : 2px solid #000000;
         background-color: #f2f2f2;
         color: black;
+        font-size: 15px;
       }
       th{
         text-align: center;
@@ -25,7 +26,7 @@
         text-align: left;
         word-wrap:break-word;
       }
-      .itemUser{
+      .itemuser{
         width: 150px;
         text-align: center;
       }
@@ -88,22 +89,35 @@
         });
         $("#show-result").on('click','button',function(){
           var x = $(this).parents('tr');
+          var tmpchoose;
           // Send value to database
           if(this.id=="good"){
             var lastClass = x.attr('class').split(' ').pop();
+            tmpchoose = 3;
             x.removeClass(lastClass);
             x.addClass("statusNovel-good");
           }
           else if(this.id=="wait"){
             var lastClass = x.attr('class').split(' ').pop();
+            tmpchoose = 2;
             x.removeClass(lastClass);
             x.addClass("statusNovel-wait");
           }
           else if(this.id=="bad"){
             var lastClass = x.attr('class').split(' ').pop();
+            tmpchoose = 1;
             x.removeClass(lastClass);
             x.addClass("statusNovel-bad");
           }
+          var tmpid = $(this).parents('tr').children();
+          $.ajax({
+            url: "database2.php",
+            type: "POST",
+            data: {
+              id: $(tmpid["0"]).text(),
+              choose: tmpchoose
+            }
+          })
         });
       });
     </script>

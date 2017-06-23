@@ -1,16 +1,5 @@
-<?php
-	require_once("../vendor/autoload.php");
-	require_once("config.php");
-	$database = new Model\database();
-
-	// echo "DB_Host Hello";
-	$x = $database->query_by_id(1620011);
-	foreach ($x as $y) {
-		echo $y."<br>";
-	}
-
-	
-	// $loader = require  '../vendor/autoload.php';
-	// var_dump($loader);
-
-?>
+<meta charset="utf-8">
+<title>Search Novel From Database</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>﻿
