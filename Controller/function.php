@@ -3,5 +3,4 @@
 		header("Location: {$location}.php");
 		exit(0);
 	}
-	}
 ?>
